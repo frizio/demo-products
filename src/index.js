@@ -4,7 +4,9 @@ const url =  require('url');
 const path = require('path');
 
 if ( process.env.NODE_ENV !== 'production' ) {
-    require('electron-reload')(__dirname, {  });
+    require('electron-reload')(__dirname, {  
+        electron: path.join(__dirname, '../node_modules', '.bin', 'electron')
+    });
 }
 
 
@@ -19,12 +21,21 @@ app.on(
             slashes: true // to use navigation like a web browser
         } ) );
 
-        Menu.buildFromTemplate();
+        const mainNenu = Menu.buildFromTemplate(templateMenu);
+        Menu.setApplicationMenu(mainNenu);
     }
 );
 
 const templateMenu = [
-    {},
-    {},
-    {}
+    {
+        label: 'File',
+        submenu: [{
+            label: 'New Product',
+            accelerator: 'Ctrl+N',
+            click() {
+                alert('New Product');
+            }
+        }]
+    }
+
 ];
