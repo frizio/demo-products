@@ -1,14 +1,18 @@
-// We need the application and a window...
-// app: is a C application
-// BrowserWindow is the class that create the window
 const { app, BrowserWindow }  = require('electron');
 
-// The main window must be a global variable
+const url =  require('url');
+const path = require('path');
+
 let mainWindow;
 
 app.on(
     'ready', () => {
         mainWindow = new BrowserWindow({  });
+        mainWindow.loadURL( url.format( { 
+            pathname: path.join(__dirname, 'views/index.html'),
+            protocol: 'file',
+            slashes: true // to use navigation like a web browser
+        } ) );
     }
 );
 
