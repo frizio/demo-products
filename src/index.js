@@ -1,4 +1,4 @@
-const { app, BrowserWindow }  = require('electron');
+const { app, BrowserWindow, Menu }  = require('electron');
 
 const url =  require('url');
 const path = require('path');
@@ -18,6 +18,13 @@ app.on(
             protocol: 'file',
             slashes: true // to use navigation like a web browser
         } ) );
+
+        Menu.buildFromTemplate();
     }
 );
 
+const templateMenu = [
+    {},
+    {},
+    {}
+];
