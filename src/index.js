@@ -11,6 +11,7 @@ if ( process.env.NODE_ENV !== 'production' ) {
 
 
 let mainWindow;
+let newProductWindow;
 
 app.on(
     'ready', () => {
@@ -26,6 +27,21 @@ app.on(
     }
 );
 
+function createNewProductWindow() {
+    newProductWindow = new BrowserWindow( {
+        width: 400,
+        height: 300,
+        title: 'Add a new product'
+    } );
+    newProductWindow.setMenu(null);
+    newProductWindow.loadURL( url.format( { 
+        pathname: path.join(__dirname, 'views/new-product.html'),
+        protocol: 'file',
+        slashes: true // to use navigation like a web browser
+    } ) );
+
+}
+
 const templateMenu = [
     {
         label: 'File',
@@ -33,7 +49,7 @@ const templateMenu = [
             label: 'New Product',
             accelerator: 'Ctrl+N',
             click() {
-                alert('New Product');
+                createNewProductWindow();
             }
         }]
     },
