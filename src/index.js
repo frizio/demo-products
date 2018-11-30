@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu }  = require('electron');
+const { app, BrowserWindow, Menu, ipcMain }  = require('electron');
 
 const url =  require('url');
 const path = require('path');
@@ -59,6 +59,12 @@ function createNewProductWindow() {
         }
     );
 }
+
+ipcMain.on('product:new', 
+    (event, newProduct) => {
+        console.log(newProduct);
+    }
+); 
 
 const templateMenu = [
     {
