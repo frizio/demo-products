@@ -90,7 +90,10 @@ const templateMenu = [
             {
                 label: 'Remove all products',
                 accelerator: 'Ctrl+R',
-                click() { console.log('Remove all products'); }
+                click() { 
+                    console.log('Remove all products'); 
+                    mainWindow.webContents.send('products:remove-all');
+                }
             }
         ]
     },
