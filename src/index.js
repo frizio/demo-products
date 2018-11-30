@@ -36,6 +36,15 @@ const templateMenu = [
                 alert('New Product');
             }
         }]
+    },
+    {
+        label: 'Help',
+        submenu: [{
+            label: 'About',
+            accelerator: 'Ctrl+I',
+            click() {
+                alert('Informazioni su');
+            }
+        }]
     }
-
 ];
