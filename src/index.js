@@ -62,7 +62,9 @@ function createNewProductWindow() {
 
 ipcMain.on('product:new', 
     (event, newProduct) => {
-        console.log(newProduct);
+        console.log('index.js log ', newProduct);
+        mainWindow.webContents.send('product:new', newProduct);
+        newProductWindow.close();
     }
 ); 
 

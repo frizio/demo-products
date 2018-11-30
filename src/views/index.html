@@ -17,6 +17,12 @@
 
     <script>
         // Node.js functions directly callable
+        const { ipcRenderer } = require('electron');
+        ipcRenderer.on('product:new', 
+            (event, newProduct) => {
+                console.log('index.html log ', newProduct);
+            }
+        );
 
     </script>
 
