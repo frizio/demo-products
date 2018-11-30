@@ -18,11 +18,35 @@
     <script>
         // Node.js functions directly callable
         const { ipcRenderer } = require('electron');
+
+        const products = document.querySelector('#products')
+
         ipcRenderer.on('product:new', 
             (event, newProduct) => {
-                console.log('index.html log ', newProduct);
+                //console.log('index.html log ', newProduct);
+                const newProductTemplate =`
+                    <div class="col-xs-4 p-2">
+                        <div class="card text-center">
+                            <div class="card-header">
+                                <h5 class="card-title">${newProduct.name}</h5>
+                            </div>
+                            <div class="card-body">
+                                ${newProduct.description}
+                                <hr/>
+                                ${newProduct.price}
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-danger btn-sm">
+                                    Delete
+                                </button
+                            </div>
+                        </div>
+                    </div>
+                `;
+                products.innerHTML += newProductTemplate;
             }
         );
+
 
     </script>
 
