@@ -13,6 +13,8 @@ if ( process.env.NODE_ENV !== 'production' ) {
 let mainWindow;
 let newProductWindow;
 
+app.setName('DemoApp');
+
 app.on(
     'ready', () => {
         mainWindow = new BrowserWindow({  });
@@ -21,6 +23,7 @@ app.on(
             protocol: 'file',
             slashes: true // to use navigation like a web browser
         } ) );
+        mainWindow.setTitle(app.getName());
 
         const mainNenu = Menu.buildFromTemplate(templateMenu);
         Menu.setApplicationMenu(mainNenu);
