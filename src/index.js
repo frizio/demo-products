@@ -4,9 +4,11 @@ const url =  require('url');
 const path = require('path');
 
 if ( process.env.NODE_ENV !== 'production' ) {
-    require('electron-reload')(__dirname, {  
-        electron: path.join(__dirname, '../node_modules', '.bin', 'electron')
-    });
+    require('electron-reload')(
+        __dirname, 
+        {  
+            electron: path.join(__dirname, '../node_modules', '.bin', 'electron')
+        });
 }
 
 
@@ -15,8 +17,8 @@ let newProductWindow;
 
 app.setName('DemoApp');
 
-app.on(
-    'ready', () => {
+app.on('ready', 
+    () => {
         mainWindow = new BrowserWindow({  });
         mainWindow.loadURL( url.format( { 
             pathname: path.join(__dirname, 'views/index.html'),
@@ -27,8 +29,8 @@ app.on(
         const mainNenu = Menu.buildFromTemplate(templateMenu);
         Menu.setApplicationMenu(mainNenu);
 
-        mainWindow.on(
-            'closed', () => {
+        mainWindow.on('closed', 
+            () => {
                 console.log('Close main window... Quitting app.');
                 app.quit();        
             }
@@ -39,26 +41,26 @@ app.on(
 
 function createNewProductWindow() {
     console.log('Creating of a new window to add a product');
-    
     newProductWindow = new BrowserWindow( {
         width: 400,
         height: 300,
         title: 'Add a new product'
     } );
-    newProductWindow.setMenu(null);
+    //newProductWindow.setMenu(null);
     newProductWindow.loadURL( url.format( { 
         pathname: path.join(__dirname, 'views/new-product.html'),
         protocol: 'file',
         slashes: true // to use navigation like a web browser
     } ) );
-    newProductWindow.on('closed', () => { 
-        console.log('Close add product window');
-        newProductWindow = null;
-     } );
+    newProductWindow.on('closed', 
+        () => { 
+            console.log('Close add product window');
+            newProductWindow = null;
+        }
+    );
 }
 
 const templateMenu = [
-    
     {
         label: 'File',
         submenu: [
@@ -112,6 +114,7 @@ if (process.env.NODE_ENV !== 'production') {
             submenu: [
                 {
                     label: 'Show/Hide Dev Tools',
+                    accelerator: 'Ctrl+D',
                     click(item, focusedWindow) {
                         focusedWindow.toggleDevTools();
                     }
@@ -122,5 +125,4 @@ if (process.env.NODE_ENV !== 'production') {
             ]
         }
     );
-
 }
