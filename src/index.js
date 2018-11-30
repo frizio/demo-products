@@ -58,22 +58,36 @@ function createNewProductWindow() {
 const templateMenu = [
     {
         label: 'File',
-        submenu: [{
-            label: 'New Product',
-            accelerator: 'Ctrl+N',
-            click() {
-                createNewProductWindow();
+        submenu: [
+            {
+                label: 'Exit',
+                accelerator: 'Ctrl+Q',
+                click() { app.quit(); }
             }
-        }]
+        ]
+    },
+    {
+        label: 'Actions',
+        submenu: [
+            {
+                label: 'New Product',
+                accelerator: 'Ctrl+N',
+                click() { createNewProductWindow(); }
+            },
+            {
+                label: 'Remove all products',
+                accelerator: 'Ctrl+R'
+            }
+        ]
     },
     {
         label: 'Help',
-        submenu: [{
-            label: 'About',
-            accelerator: 'Ctrl+I',
-            click() {
-                alert('Informazioni su');
+        submenu: [
+            {
+                label: 'About',
+                accelerator: 'Ctrl+I',
+                click() { console.log('Information about the application'); }
             }
-        }]
+        ]
     }
 ];
