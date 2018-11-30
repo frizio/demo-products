@@ -44,6 +44,19 @@
                     </div>
                 `;
                 products.innerHTML += newProductTemplate;
+
+                const btns = document.querySelectorAll('.btn.btn-danger');
+                btns.forEach( 
+                    btn => {
+                        btn.addEventListener('click', 
+                            event => {
+                                event.target.parentElement.parentElement.parentElement.remove();
+                            }
+                        );
+                    }
+                
+                );
+
             }
         );
 
