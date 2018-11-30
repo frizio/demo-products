@@ -24,5 +24,22 @@
         </button>
     </form>
 
+    <script>
+        // The form's default behaviour is submit data to the server and refresh the form.
+        // Change this behaviour
+        const form = document.querySelector('form');
+        form.addEventListener('submit',
+            event => {
+                event.preventDefault();
+                //console.log(event);
+                const name = document.querySelector('#name').value;
+                const price = document.querySelector('#price').value;
+                const description = document.querySelector('#description').value;
+                console.log('User inputs');
+                console.log(name, price, description);
+            }
+        );
+    </script>
+
 </body>
 </html>
