@@ -104,3 +104,24 @@ if ( process.platform === 'darwin' ) {
         }
     );
 }
+
+// Electron app embed a version of Chronium inside a os window.
+if (process.env.NODE_ENV !== 'production') {
+    templateMenu.push(
+        {
+            label: 'Devtools',
+            submenu: [
+                {
+                    label: 'Show/Hide Dev Tools',
+                    click(item, focusedWindow) {
+                        focusedWindow.toggleDevTools();
+                    }
+                },
+                {
+                    role: 'reload'
+                }
+            ]
+        }
+    );
+
+}
