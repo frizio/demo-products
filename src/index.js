@@ -56,12 +56,13 @@ function createNewProductWindow() {
 }
 
 const templateMenu = [
+    
     {
         label: 'File',
         submenu: [
             {
                 label: 'Exit',
-                accelerator: 'Ctrl+Q',
+                accelerator: process.platform == 'darwin' ? 'command+Q' : 'Ctrl+Q',
                 click() { app.quit(); }
             }
         ]
@@ -76,7 +77,8 @@ const templateMenu = [
             },
             {
                 label: 'Remove all products',
-                accelerator: 'Ctrl+R'
+                accelerator: 'Ctrl+R',
+                click() { console.log('Remove all products'); }
             }
         ]
     },
@@ -91,3 +93,11 @@ const templateMenu = [
         ]
     }
 ];
+
+if ( process.platform === 'darwin' ) {
+    templateMenu.unshift(
+        {
+            label: app.getName()
+        }
+    );
+}
