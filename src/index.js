@@ -24,10 +24,20 @@ app.on(
 
         const mainNenu = Menu.buildFromTemplate(templateMenu);
         Menu.setApplicationMenu(mainNenu);
+
+        mainWindow.on(
+            'closed', () => {
+                console.log('Close main window... Quitting app.');
+                app.quit();        
+            }
+        );
+
     }
 );
 
 function createNewProductWindow() {
+    console.log('Creating of a new window to add a product');
+    
     newProductWindow = new BrowserWindow( {
         width: 400,
         height: 300,
@@ -39,7 +49,10 @@ function createNewProductWindow() {
         protocol: 'file',
         slashes: true // to use navigation like a web browser
     } ) );
-
+    newProductWindow.on('closed', () => { 
+        console.log('Close add product window');
+        newProductWindow = null;
+     } );
 }
 
 const templateMenu = [
